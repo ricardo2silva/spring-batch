@@ -20,6 +20,12 @@ Uma das grandes dificuldades é o processamento desse grande lote de dados, algu
 # Escabilidade
 - É crucial para garantir que o processamento de dados seja feito dentro da janela de tempo definida para a execução
 ---------------------------------------------------------------------------------------------------------------------------------
+
+
+# BatchConfig
+
+- Para que eu consiga informar que existe uma rotina batch, vamos usar o Job(tarefa) e encapuslar elas
+---------------------------------------------------------------------------------------------------------------------------------
 # PROBLEMAS ENCONTRADOS DURANTE O DESENVOLVIMENTO
 
 - Quando usamos o spring batch, precisamos usar algum datasource, porque o spring batch ele salva metadados que são importantes para o bom funcionamento dele
@@ -28,12 +34,10 @@ Uma das grandes dificuldades é o processamento desse grande lote de dados, algu
 
 # @EnableBatchProcessing
 
-- Anotamos na classe config para que ela traga todo o contexto do framework evitando o seguinte erro :
+- Anotamos na classe config para que ela traga todo o contexto do framework 
+<p align="center"><img src="src/main/resources/assets/to_readme/AnotaçãoNaClasseDeConfig.png"></p>
 
+- evitando o seguinte erro :
 <p align="center"> <img src="src/main/resources/assets/to_readme/ErroEnableBatchProcessing.png"></p>
 
 -------------------------------------------------------------------------------------------------------------------------
-
-# BatchConfig
-
-- Para que eu consiga informar que existe uma rotina batch, vamos usar o Job(tarefa) e encapuslar elas
