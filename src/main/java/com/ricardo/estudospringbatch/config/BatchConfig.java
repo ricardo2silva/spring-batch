@@ -24,37 +24,13 @@ public class BatchConfig {
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
 
-    //precisamos de builders para construir nossas etapas(STEP)
-    @Autowired
-    StepBuilderFactory stepBuilderFactory;
     @Bean
-    public Job imprimirOlaJob() {
+    public Job imprimirOlaJob(Step imprimiOlaStep) {
         return jobBuilderFactory
                 .get("imprimeOláJob") // recebe o nome do job
-                .start(imprimeOlaStep()) // recebe um flow que é um Step
+                .start(imprimiOlaStep) // recebe um flow que é um Step
                 .incrementer(new RunIdIncrementer()) // quando quiser executar varias vezes sem alterar os parametros  eu coloco esse incremento
                 .build();
     }
-    // como utilizamos o spring precisamos colocar esse objeto no contexto da aplicação, utilizamos o @Bean
-    public Step imprimeOlaStep(){
-        return stepBuilderFactory
-                .get("imprimeOlaStep")
-                .tasklet(getTasklet(null))
-                .build();
-    }
-    // para podermos acessar o nome que esta no contexto, devemos anotar com @StepScope
-    @StepScope
-    @Bean
-    public Tasklet getTasklet(@Value("#{jobParameters['nome']}") String nome) {
-        return new Tasklet() {
-            @Override
-            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-                // aqui vai a lógica que precisamos, no nosso caso e em primeiro momento apenas um "olá mundo".
-                System.out.println(String.format("olá, %s!", nome));
-                return RepeatStatus.FINISHED;
-            }
-        };
-    }
 
-    // tasklet - tarefa simples
 }
