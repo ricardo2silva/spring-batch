@@ -44,7 +44,7 @@ public class ParOuImparBatchConfig {
                 .build();
     }
 //usando uma implementação que o spring fornece
-    // é represenstado por ItemReader, mas como vamos iterar utilizamos a IteratorItemReader
+    // é representado por ItemReader, mas como vamos iterar utilizamos a IteratorItemReader
     public IteratorItemReader<Integer> contaAteDezReader(){
         List<Integer> numerosDeUmADez = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
         return  new IteratorItemReader<Integer>(numerosDeUmADez.iterator());
